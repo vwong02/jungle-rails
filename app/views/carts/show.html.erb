@@ -55,9 +55,10 @@
   <!-- Empty cart message -->
   <% else %>
 
-  <p>Your cart is currently empty.</p>
-
-  <%= link_to "Shop Now", root_path, style: "text-decoration: none", class: "btn btn-primary" %>
+  <div class="alert alert-secondary" role="alert">
+    <p>Your cart is currently empty.</p>
+    <%= link_to "Shop Now", root_path, class: "btn btn-primary" %>
+  </div>
 
   <% end %>
 
