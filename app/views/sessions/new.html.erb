@@ -1,16 +1,29 @@
 <div class="container">
 
-  <h1>Login</h1>
+  <% if flash[:notice] %>
+  <div class="alert alert-info mt-4">
+    <%= flash[:notice] %>
+    <% flash[:notice] = nil %>
+    <% end %>
+  </div>
+
+  <h1 class="mt-4">Login</h1>
 
   <%= form_tag '/login', method: :post, class: 'form-signin' do %>
+
+  <div class="mt-3">
     <%= label_tag :email, 'Email' %>
-
     <%= email_field_tag :email, nil, class: 'form-control', required: true %>
+  </div>
+
+  <div class="mt-3">
     <%= label_tag :password, 'Password' %>
-
     <%= password_field_tag :password, nil, class: 'form-control', required: true %>
+  </div>
 
+  <div class="mt-4">
     <%= submit_tag "Login", class: 'btn btn-lg btn-primary btn-block' %>
+  </div>
 
   <% end %>
 
