@@ -7,6 +7,12 @@
     <% end %>
   </div>
 
+  <% if flash.now[:alert] %>
+  <div class="alert alert-danger mt-4">
+    <%= flash.now[:alert] %>
+  </div>
+  <% end %>
+
   <h1 class="mt-4">Login</h1>
 
   <%= form_tag '/login', method: :post, class: 'form-signin' do %>
