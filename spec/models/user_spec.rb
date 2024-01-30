@@ -41,5 +41,23 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Password can't be blank")
     end
 
+    it "should not save if password and password_confirmation don't match" do
+      @user.password = '12345'
+      @user.password_confirmation = 'abcde'
+      expect(@user.save).to be false
+    end
+
+    it 'email should be unique and not case-sensitive' do
+      # Use create instead of new because create checks the save parameters
+      User.create(
+        first_name: 'Jane',
+        last_name: 'Smith',
+        email: 'TEST@TEST.com',
+        password: 'password',
+        password_confirmation: 'password'
+      )
+      expect(@user.save).to be false
+      expect(@user.errors.full_messages).to include('Email has already been taken')
+    end
   end
 end
