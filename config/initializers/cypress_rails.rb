@@ -24,6 +24,7 @@ CypressRails.hooks.before_server_start do
     quantity: 18,
     price: 24.99
   })
+
 end
 
 CypressRails.hooks.after_transaction_start do
@@ -32,6 +33,7 @@ end
 
 CypressRails.hooks.after_state_reset do
   # Triggered after `/cypress_rails_reset_state` is called
+  DatabaseCleaner.clean
 end
 
 CypressRails.hooks.before_server_stop do
