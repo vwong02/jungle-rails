@@ -88,5 +88,14 @@ RSpec.describe User, type: :model do
     it 'returns a user with matching email and password' do
       expect(User.authenticate_with_credentials('test@test.com', 'password')).to eq @user
     end
+
+    it 'authenticate user if email contains trailing spaces' do
+      expect(User.authenticate_with_credentials('     test@test.com     ', 'password')).to eq @user
+    end
+
+    it 'authenticate email is case-insensitive' do
+      expect(User.authenticate_with_credentials('tEsT@tEsT.com', 'password')).to eq @user
+    end
+
   end
 end
