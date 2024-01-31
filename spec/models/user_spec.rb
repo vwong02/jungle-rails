@@ -96,6 +96,5 @@ RSpec.describe User, type: :model do
     it 'authenticate email is case-insensitive' do
       expect(User.authenticate_with_credentials('tEsT@tEsT.com', 'password')).to eq @user
     end
-
   end
 end
