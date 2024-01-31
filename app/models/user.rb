@@ -6,4 +6,11 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true
 
   has_secure_password
+
+  def self.authenticate_with_credentials(email, password)
+    # .strip removes whitespaces
+    # .downcase makes email all lower case to make search not case-sensitive
+    user = find_by(email: email.strip.downcase)
+    user && user.authenticate(password) ? user : nil
+  end
 end
